@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketplace Pro | Plantilla Editable Animada</title>
+
+ 
+  <style>
+    :root{
+      --bg: #23272f;
+      --white: #ffffff;
+      --dark: #0f1720;
+      --dark-2: #151c26;
+      --dark-3: #1e2937;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #f7b500;
+      --accent-2: #ffcb47;
+      --accent-dark: #dc9b00;
+      --link: #0f6cbd;
+      --shadow-sm: 0 8px 24px rgba(0,0,0,.06);
+      --shadow-md: 0 16px 38px rgba(0,0,0,.12);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,.15);
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --container: 1450px;
+      --editable: #0f6cbd;
+      --editable-bg: rgba(15,108,189,.10);
+      --editable-bg-strong: rgba(15,108,189,.18);
+      --success: #10b981;
+      --danger: #ef4444;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.04), transparent 24%),
+        linear-gradient(180deg, #2b313a 0%, #23272f 42%, #1b1f26 100%);
+      color: var(--text);
+      line-height:1.45;
+      overflow-x:hidden;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    img{
+      width:100%;
+      display:block;
+    }
+
+    button, input, select{
+      font:inherit;
+    }
+
+    ul{
+      list-style:none;
+    }
+
+    .container{
+      width:min(100% - 24px, var(--container));
+      margin-inline:auto;
+    }
+
+    .section{
+      padding: 18px 0;
+    }
+
+    .section-title{
+      font-size:1.55rem;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      margin-bottom:18px;
+      color:#f3f4f6;
+    }
+
+    .editable-zone{
+      position:relative;
+      border:none;
+      background:transparent;
+      border-radius:16px;
+      transition: transform .28s ease, box-shadow .28s ease, background .28s ease;
+    }
+
+    .editable-zone:hover{
+      background:var(--editable-bg-strong);
+      box-shadow: 0 0 0 5px rgba(15,108,189,.16);
+    }
+
+
+    .editable-zone:hover,
+    .editable-zone:hover h1,
+    .editable-zone:hover h2,
+    .editable-zone:hover h3,
+    .editable-zone:hover h4,
+    .editable-zone:hover h5,
+    .editable-zone:hover h6,
+    .editable-zone:hover p,
+    .editable-zone:hover span,
+    .editable-zone:hover strong,
+    .editable-zone:hover small,
+    .editable-zone:hover li,
+    .editable-zone:hover .product-title,
+    .editable-zone:hover .price,
+    .editable-zone:hover .old-price,
+    .editable-zone:hover .mini-pill,
+    .editable-zone:hover .eyebrow,
+    .editable-zone:hover .action-link,
+    .editable-zone:hover .nav-link,
+    .editable-zone:hover .location-box strong,
+    .editable-zone:hover .location-box small,
+    .editable-zone:hover .brand strong,
+    .editable-zone:hover .brand small,
+    .editable-zone:hover .floating-card strong,
+    .editable-zone:hover .floating-card span,
+    .editable-zone:hover .footer-box p,
+    .editable-zone:hover .footer-box li,
+    .editable-zone:hover .footer-box a,
+    .editable-zone:hover a:not(.btn):not(.editable-label){
+      color:#ffffff !important;
+    }
+
+    .editable-zone:hover .editable-label,
+    .editable-zone:hover .badge,
+    .editable-zone:hover .btn,
+    .editable-zone:hover .btn *{
+      color:inherit !important;
+    }
+
+    .editable-label{
+      display:none !important;
+    }
+
+    .card{
+      background:var(--white);
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow-sm);
+      overflow:hidden;
+    }
+
+    .hover-lift{
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .hover-lift:hover{
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn{
+      min-height:46px;
+      padding:0 18px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:none;
+      border-radius:999px;
+      font-weight:800;
+      cursor:pointer;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease, opacity .25s ease;
+      will-change:transform;
+    }
+
+    .btn:hover{
+      transform: translateY(-2px);
+    }
+
+    .btn-primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:#111;
+      box-shadow: 0 10px 24px rgba(247,181,0,.28);
+    }
+
+    .btn-primary:hover{
+      background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+    }
+
+    .btn-dark{
+      background: linear-gradient(135deg, var(--dark), var(--dark-3));
+      color:#fff;
+      box-shadow: 0 12px 26px rgba(17,24,39,.18);
+    }
+
+    .btn-outline{
+      background:#fff;
+      color:var(--dark);
+      border:1px solid var(--line);
+    }
+
+    .hero-side .side-card:hover .btn-outline{
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:#111 !important;
+      border-color:var(--accent);
+      box-shadow: 0 10px 24px rgba(247,181,0,.28);
+    }
+
+    .hero-side .side-card:hover .btn-outline:hover{
+      background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+      color:#111 !important;
+    }
+
+    .topbar{
+      background:#0c0f14;
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .topbar::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+      transform:translateX(-100%);
+      animation: shine 8s linear infinite;
+    }
+
+    .topbar-inner{
+      min-height:40px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      font-size:.92rem;
+      padding:8px 0;
+    }
+
+    header{
+      background: linear-gradient(180deg, var(--dark), var(--dark-2));
+      color:#fff;
+      position:sticky;
+      top:0;
+      z-index:40;
+      box-shadow:0 10px 26px rgba(0,0,0,.12);
+    }
+
+    .header-main{
+      display:grid;
+      grid-template-columns: 190px 210px 1fr 340px;
+      gap:12px;
+      align-items:center;
+      padding:14px 0;
+    }
+
+    .brand-box,
+    .location-box,
+    .search-box,
+    .header-actions{
+      min-height:68px;
+      display:flex;
+      align-items:center;
+      padding:10px 14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo-mark{
+      width:52px;
+      height:52px;
+      border-radius:14px;
+      background:linear-gradient(135deg, #fff, #e5e7eb);
+      color:var(--dark);
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      font-size:1.25rem;
+      flex-shrink:0;
+      box-shadow: 0 8px 18px rgba(255,255,255,.12);
+    }
+
+    .brand small,
+    .location-box small,
+    .action-link span{
+      display:block;
+      color:#cbd5e1;
+      font-size:.8rem;
+    }
+
+    .brand strong,
+    .location-box strong,
+    .action-link strong{
+      display:block;
+      font-size:.96rem;
+      line-height:1.15;
+      margin-top:2px;
+    }
+
+    .search-box{
+      padding:8px;
+    }
+
+    .search-form{
+      width:100%;
+      display:grid;
+      grid-template-columns: 180px 1fr 58px;
+      min-height:54px;
+      background:#fff;
+      border-radius:999px;
+      overflow:hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,.14);
+    }
+
+    .search-form select{
+      border:none;
+      outline:none;
+      padding:0 16px;
+      background:#f3f4f6;
+      border-right:1px solid #e5e7eb;
+      color:#111;
+    }
+
+    .search-form input{
+      border:none;
+      outline:none;
+      padding:0 18px;
+      color:#111;
+    }
+
+    .search-form button{
+      border:none;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      cursor:pointer;
+      font-size:1.1rem;
+      font-weight:900;
+    }
+
+    .header-actions{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+
+    .action-link{
+      min-height:50px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 10px;
+      border-radius:14px;
+      transition: background .25s ease, transform .25s ease;
+    }
+
+    .action-link:hover{
+      background: rgba(255,255,255,.08);
+      transform: translateY(-1px);
+    }
+
+    .main-nav{
+      background: linear-gradient(180deg, var(--dark-3), #202b3c);
+      color:#fff;
+      border-top:1px solid rgba(255,255,255,.06);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .nav-inner{
+      min-height:46px;
+      display:flex;
+      gap:18px;
+      align-items:center;
+      white-space:nowrap;
+      overflow-x:auto;
+      padding:0 4px;
+      scrollbar-width:none;
+    }
+
+    .nav-inner::-webkit-scrollbar{
+      display:none;
+    }
+
+    .nav-link{
+      position:relative;
+      font-size:.94rem;
+      font-weight:700;
+      opacity:.95;
+      padding:4px 0;
+    }
+
+    .nav-link::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-3px;
+      width:0;
+      height:2px;
+      background:var(--accent);
+      transition:width .28s ease;
+    }
+
+    .nav-link:hover::after{
+      width:100%;
+    }
+
+    .lang-toolbar{
+      padding:14px 0 4px;
+    }
+
+    .lang-toolbar-inner{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      gap:12px;
+    }
+
+    .lang-label{
+      color:#e5e7eb;
+      font-size:.95rem;
+      font-weight:700;
+      letter-spacing:.01em;
+    }
+
+    .lang-switcher{
+      min-width:190px;
+      min-height:46px;
+      padding:0 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(15,23,32,.9);
+      color:#f9fafb;
+      box-shadow:0 10px 24px rgba(0,0,0,.18);
+      outline:none;
+      cursor:pointer;
+    }
+
+    .lang-switcher:hover{
+      border-color:rgba(255,255,255,.22);
+    }
+
+
+    .hero-wrap{
+      padding:18px 0 10px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.55fr .88fr;
+      gap:18px;
+    }
+
+    .hero-main{
+      min-height:500px;
+      display:grid;
+      grid-template-columns: 1.05fr 1fr;
+      position:relative;
+      overflow:hidden;
+      background: radial-gradient(circle at 15% 15%, rgba(255,203,71,.26), transparent 30%),
+                  linear-gradient(135deg, #fff, #f8fafc);
+    }
+
+    .hero-main::before{
+      content:"";
+      position:absolute;
+      inset:-100px;
+      background:
+        radial-gradient(circle at 70% 30%, rgba(15,108,189,.10), transparent 18%),
+        radial-gradient(circle at 80% 70%, rgba(247,181,0,.18), transparent 18%);
+      animation: floatBg 10s ease-in-out infinite alternate;
+      pointer-events:none;
+    }
+
+    .hero-copy{
+      padding:42px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:16px;
+      position:relative;
+      z-index:2;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      width:max-content;
+      background:#fff5d7;
+      color:#8a5a00;
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:.85rem;
+      box-shadow: 0 8px 20px rgba(247,181,0,.12);
+    }
+
+    .hero-copy h1{
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height:1.02;
+      letter-spacing:-.03em;
+      color:var(--dark);
+    }
+
+    .hero-copy p{
+      color:#4b5563;
+      font-size:1rem;
+      max-width:610px;
+    }
+
+    .hero-actions-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:4px;
+    }
+
+    .hero-features{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
+
+    .mini-pill{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:9px 12px;
+      font-size:.88rem;
+      font-weight:700;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-media{
+      position:relative;
+      min-height:500px;
+      padding:18px;
+      z-index:2;
+    }
+
+    .hero-image{
+      height:100%;
+      border-radius:26px;
+      overflow:hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-image img{
+      height:100%;
+      object-fit:cover;
+    }
+
+    .floating-card{
+      position:absolute;
+      background:rgba(255,255,255,.95);
+      backdrop-filter: blur(10px);
+      border-radius:18px;
+      padding:14px 16px;
+      box-shadow: var(--shadow-md);
+      animation: floatY 5s ease-in-out infinite;
+    }
+
+    .floating-card strong{
+      display:block;
+      color:var(--dark);
+      font-size:.95rem;
+      margin-bottom:3px;
+    }
+
+    .floating-card span{
+      color:var(--muted);
+      font-size:.84rem;
+    }
+
+    .floating-card.card-a{
+      top:28px;
+      right:22px;
+      animation-delay:.2s;
+    }
+
+    .floating-card.card-b{
+      left:4px;
+      bottom:24px;
+      animation-delay:1s;
+    }
+
+    .hero-side{
+      display:grid;
+      gap:18px;
+    }
+
+    .side-card{
+      padding:18px;
+      min-height:240px;
+      position:relative;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      background: linear-gradient(180deg, #fff, #f8fafc);
+    }
+
+    .side-card h3{
+      font-size:1.12rem;
+      color:var(--dark);
+    }
+
+    .side-card p{
+      color:var(--muted);
+      font-size:.94rem;
+    }
+
+    .side-card img{
+      border-radius:18px;
+      height:160px;
+      object-fit:cover;
+    }
+
+    .promo-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:18px;
+    }
+
+    .promo-card{
+      padding:16px;
+      background: linear-gradient(180deg, #fff, #fbfdff);
+    }
+
+    .promo-card h3{
+      font-size:1.02rem;
+      margin-bottom:12px;
+      color:var(--dark);
+    }
+
+    .promo-card img{
+      height:180px;
+      object-fit:cover;
+      border-radius:16px;
+      margin-bottom:12px;
+    }
+
+    .promo-card a{
+      color:var(--link);
+      font-weight:800;
+      font-size:.92rem;
+    }
+
+    .categories-grid{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap:18px;
+    }
+
+    .category-card{
+      padding:16px;
+      text-align:center;
+      background: linear-gradient(180deg, #fff, #f9fafb);
+    }
+
+    .category-card img{
+      height:160px;
+      object-fit:cover;
+      border-radius:18px;
+      margin-bottom:12px;
+    }
+
+    .category-card h3{
+      font-size:1rem;
+      margin-bottom:6px;
+      color:var(--dark);
+    }
+
+    .category-card p{
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .products-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:18px;
+    }
+
+    .product-card{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      background: linear-gradient(180deg, #fff, #fcfcfd);
+    }
+
+    .product-media{
+      position:relative;
+      overflow:hidden;
+      border-radius:18px;
+    }
+
+    .product-media img{
+      height:235px;
+      object-fit:cover;
+      transition: transform .5s ease;
+      background:#f3f4f6;
+    }
+
+    .product-card:hover .product-media img{
+      transform:scale(1.05);
+    }
+
+    .badge{
+      position:absolute;
+      top:10px;
+      left:10px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:28px;
+      padding:0 10px;
+      border-radius:999px;
+      background:#fee2e2;
+      color:#b91c1c;
+      font-size:.76rem;
+      font-weight:900;
+      z-index:2;
+    }
+
+    .product-title{
+      font-size:.98rem;
+      font-weight:800;
+      min-height:48px;
+      color:var(--dark);
+    }
+
+    .rating{
+      color:#f59e0b;
+      font-size:.92rem;
+    }
+
+    .price-row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .price{
+      font-size:1.34rem;
+      font-weight:900;
+      color:var(--dark);
+    }
+
+    .old-price{
+      font-size:.94rem;
+      text-decoration:line-through;
+      color:var(--muted);
+    }
+
+    .product-desc{
+      color:var(--muted);
+      font-size:.92rem;
+      flex-grow:1;
+    }
+
+    .offers-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+    }
+
+    .offer-main{
+      min-height:330px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      overflow:hidden;
+      background: linear-gradient(135deg, #fff, #f7fafc);
+      position:relative;
+    }
+
+    .offer-main::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      transform:translateX(-100%);
+      animation: shine 7s linear infinite;
+      pointer-events:none;
+    }
+
+    .offer-copy{
+      padding:30px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:14px;
+      z-index:2;
+    }
+
+    .offer-copy h3{
+      font-size:2rem;
+      line-height:1.08;
+      color:var(--dark);
+    }
+
+    .offer-copy p{
+      color:var(--muted);
+    }
+
+    .offer-visual img{
+      height:100%;
+      min-height:330px;
+      object-fit:cover;
+    }
+
+    .mini-offers{
+      display:grid;
+      gap:18px;
+    }
+
+    .mini-offer{
+      padding:16px;
+      display:grid;
+      grid-template-columns: 145px 1fr;
+      gap:14px;
+      align-items:center;
+      background:linear-gradient(180deg, #fff, #fbfdff);
+    }
+
+    .mini-offer img{
+      height:110px;
+      object-fit:cover;
+      border-radius:16px;
+    }
+
+    .mini-offer h4{
+      margin-bottom:8px;
+      color:var(--dark);
+    }
+
+    .mini-offer p{
+      color:var(--muted);
+      margin-bottom:10px;
+      font-size:.92rem;
+    }
+
+    .collections-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:18px;
+    }
+
+    .collection-card{
+      padding:16px;
+      background:linear-gradient(180deg, #fff, #f9fafb);
+    }
+
+    .collection-card h3{
+      margin-bottom:14px;
+      color:var(--dark);
+    }
+
+    .collection-items{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+    }
+
+    .collection-item img{
+      height:118px;
+      object-fit:cover;
+      border-radius:14px;
+      margin-bottom:8px;
+    }
+
+    .collection-item span{
+      display:block;
+      font-size:.91rem;
+      font-weight:700;
+      color:var(--text);
+    }
+
+    .benefits-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:18px;
+    }
+
+    .benefit-card{
+      padding:22px;
+      text-align:center;
+      background:linear-gradient(180deg, #fff, #fbfcfd);
+    }
+
+    .benefit-icon{
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      margin:0 auto 14px;
+      display:grid;
+      place-items:center;
+      font-size:1.45rem;
+      background:linear-gradient(135deg, #eef2ff, #dbeafe);
+      box-shadow: 0 10px 20px rgba(59,130,246,.10);
+    }
+
+    .benefit-card h3{
+      font-size:1rem;
+      margin-bottom:8px;
+      color:var(--dark);
+    }
+
+    .benefit-card p{
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .cta-box{
+      padding:30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:22px;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,203,71,.25), transparent 18%),
+        radial-gradient(circle at 85% 40%, rgba(15,108,189,.12), transparent 20%),
+        linear-gradient(135deg, #fff, #f7fafc);
+    }
+
+    .cta-copy h3{
+      font-size:1.75rem;
+      color:var(--dark);
+      margin-bottom:8px;
+    }
+
+    .cta-copy p{
+      color:var(--muted);
+      max-width:760px;
+    }
+
+    .cta-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    footer{
+      margin-top:20px;
+      background: linear-gradient(180deg, #121923, #0d131c);
+      color:#fff;
+    }
+
+    .footer-top{
+      padding:34px 0 24px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
+      gap:18px;
+    }
+
+    .footer-box{
+      padding:18px;
+      background: rgba(255,255,255,.03);
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.04);
+    }
+
+    .footer-box h4{
+      font-size:1rem;
+      margin-bottom:14px;
+    }
+
+    .footer-box p,
+    .footer-box li,
+    .footer-box a{
+      color:#cbd5e1;
+      font-size:.92rem;
+    }
+
+    .footer-box ul{
+      display:grid;
+      gap:10px;
+    }
+
+    .footer-bottom{
+      padding:16px 0 26px;
+      border-top:1px solid rgba(255,255,255,.08);
+      text-align:center;
+      color:#cbd5e1;
+      font-size:.9rem;
+    }
+
+    .reveal{
+      opacity:0;
+      transform: translateY(24px) scale(.985);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.in-view{
+      opacity:1;
+      transform: translateY(0) scale(1);
+    }
+
+    .floating{
+      animation: floatY 5s ease-in-out infinite;
+    }
+
+    .pulse-soft{
+      animation: pulseSoft 3s ease-in-out infinite;
+    }
+
+    @keyframes floatY{
+      0%{ transform: translateY(0); }
+      50%{ transform: translateY(-8px); }
+      100%{ transform: translateY(0); }
+    }
+
+    @keyframes pulseSoft{
+      0%{ box-shadow: 0 0 0 0 rgba(247,181,0,.16); }
+      70%{ box-shadow: 0 0 0 18px rgba(247,181,0,0); }
+      100%{ box-shadow: 0 0 0 0 rgba(247,181,0,0); }
+    }
+
+    @keyframes shine{
+      from{ transform: translateX(-120%); }
+      to{ transform: translateX(120%); }
+    }
+
+    @keyframes floatBg{
+      0%{ transform: translateY(0) rotate(0deg); }
+      100%{ transform: translateY(-12px) rotate(2deg); }
+    }
+
+    @media (max-width: 1250px){
+      .header-main{
+        grid-template-columns:1fr;
+      }
+
+      .hero-grid,
+      .offers-grid,
+      .promo-grid,
+      .categories-grid,
+      .products-grid,
+      .collections-grid,
+      .benefits-grid,
+      .footer-grid{
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-main,
+      .offer-main{
+        grid-template-columns:1fr;
+      }
+
+      .hero-media,
+      .offer-visual img{
+        min-height:280px;
+      }
+
+      .cta-box{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+    @media (max-width: 768px){
+      .promo-grid,
+      .categories-grid,
+      .products-grid,
+      .offers-grid,
+      .collections-grid,
+      .benefits-grid,
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+      .search-form{
+        grid-template-columns:1fr;
+        border-radius:18px;
+      }
+
+      .search-form select,
+      .search-form input,
+      .search-form button{
+        min-height:48px;
+      }
+
+      .header-actions{
+        grid-template-columns:1fr;
+      }
+
+      .hero-copy{
+        padding:28px 20px;
+      }
+
+      .hero-media{
+        padding:14px;
+        min-height:300px;
+      }
+
+      .mini-offer{
+        grid-template-columns:1fr;
+      }
+
+      .floating-card{
+        position:static;
+        margin-top:10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- INICIO ZONA EDITABLE: BARRA SUPERIOR -->
+  <div class="topbar editable-zone">
+    <span class="editable-label">EDITABLE</span>
+    <div class="container topbar-inner">
+      Envíos rápidos, promociones diarias y atención personalizada para tus clientes.
+    </div>
+  </div>
+  <!-- FIN ZONA EDITABLE: BARRA SUPERIOR -->
+
+  <header>
+    <div class="container header-main">
+
+      <!-- INICIO ZONA EDITABLE: LOGO Y MARCA -->
+      <div class="brand-box editable-zone">
+        <span class="editable-label">LOGO / MARCA</span>
+        <a href="#" class="brand">
+          <div class="logo-mark pulse-soft">GVA</div>
+          <div>
+            <small>Tienda online</small>
+            <strong>Transaport</strong>
+          </div>
+        </a>
+      </div>
+      <!-- FIN ZONA EDITABLE: LOGO Y MARCA -->
+
+      <!-- INICIO ZONA EDITABLE: UBICACIÓN -->
+      <div class="location-box editable-zone">
+        <span class="editable-label">UBICACIÓN</span>
+        <div>
+          <small>Enviar a</small>
+          <strong>Tu ciudad o tu zona principal</strong>
+        </div>
+      </div>
+      <!-- FIN ZONA EDITABLE: UBICACIÓN -->
+
+      <!-- INICIO ZONA EDITABLE: BUSCADOR -->
+      <div class="search-box editable-zone">
+        <span class="editable-label">BUSCADOR</span>
+        <form class="search-form">
+          <select>
+            <option>Todas las categorías</option>
+            <option>Hogar</option>
+            <option>Tecnología</option>
+            <option>Moda</option>
+            <option>Oficina</option>
+            <option>Temporada</option>
+          </select>
+          <input type="text" placeholder="Buscar productos, categorías y promociones..." />
+          <button type="submit">🔍</button>
+        </form>
+      </div>
+      <!-- FIN ZONA EDITABLE: BUSCADOR -->
+
+      <!-- INICIO ZONA EDITABLE: ACCIONES HEADER -->
+      <div class="header-actions editable-zone">
+        <span class="editable-label">CUENTA / PEDIDOS / CARRITO</span>
+
+        <a href="#" class="action-link">
+          <div>
+            <span>Hola, accede</span>
+            <strong>Cuenta y listas</strong>
+          </div>
+        </a>
+
+        <a href="#" class="action-link">
+          <div>
+            <span>Gestión rápida</span>
+            <strong>Pedidos</strong>
+          </div>
+        </a>
+
+        <a href="#" class="action-link">
+          <div>
+            <span>Compra actual</span>
+            <strong>Carrito</strong>
+          </div>
+        </a>
+      </div>
+      <!-- FIN ZONA EDITABLE: ACCIONES HEADER -->
+
+    </div>
+  </header>
+
+  <!-- INICIO ZONA EDITABLE: MENÚ -->
+  <nav class="main-nav editable-zone">
+    <span class="editable-label">MENÚ</span>
+    <div class="container nav-inner">
+      <a class="nav-link" href="#">☰ Explorar</a>
+      <a class="nav-link" href="#">Ofertas del día</a>
+      <a class="nav-link" href="#">Novedades</a>
+      <a class="nav-link" href="#">Tecnología</a>
+      <a class="nav-link" href="#">Hogar</a>
+      <a class="nav-link" href="#">Moda</a>
+      <a class="nav-link" href="#">Oficina</a>
+      <a class="nav-link" href="#">Accesorios</a>
+      <a class="nav-link" href="#">Temporada</a>
+      <a class="nav-link" href="#">Atención al cliente</a>
+    </div>
+  </nav>
+  <!-- FIN ZONA EDITABLE: MENÚ -->
+
+  <section class="lang-toolbar">
+    <div class="container lang-toolbar-inner">
+      <label class="lang-label" for="languageSwitcher">Idioma</label>
+      <select id="languageSwitcher" class="lang-switcher" aria-label="Selector de idioma">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+      </select>
+    </div>
+  </section>
+
+  <div class="hero-wrap">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- INICIO ZONA EDITABLE: HERO PRINCIPAL -->
+        <section class="hero-main card editable-zone reveal">
+          <span class="editable-label">HERO / BANNER</span>
+
+          <div class="hero-copy">
+            <div class="eyebrow floating">Lanzamiento destacado</div>
+            <h1>Una home de marketplace más premium, visual y preparada para personalizar</h1>
+            <p>
+              Sustituye este bloque por tu propuesta de valor. Esta plantilla está pensada para
+              mostrar muchas entradas comerciales, productos, banners y módulos con una estética sólida.
+            </p>
+
+            <div class="hero-actions-row">
+              <a href="#" class="btn btn-primary">Comprar ahora</a>
+              <a href="#" class="btn btn-dark">Ver colecciones</a>
+            </div>
+
+            <div class="hero-features">
+              <div class="mini-pill">Envío rápido</div>
+              <div class="mini-pill">Pago seguro</div>
+              <div class="mini-pill">Ofertas destacadas</div>
+            </div>
+          </div>
+
+          <div class="hero-media">
+            <div class="hero-image">
+              <img src="images/1.png" alt="Imagen principal de relleno">
+            </div>
+
+            <div class="floating-card card-a">
+              <strong>Campaña visible</strong>
+              <span>Edita este bloque rápido</span>
+            </div>
+
+            <div class="floating-card card-b">
+              <strong>Producto estrella</strong>
+              <span>Oferta o mensaje destacado</span>
+            </div>
+          </div>
+        </section>
+        <!-- FIN ZONA EDITABLE: HERO PRINCIPAL -->
+
+        <div class="hero-side">
+
+          <!-- INICIO ZONA EDITABLE: TARJETA LATERAL 1 -->
+          <article class="side-card card hover-lift editable-zone reveal">
+            <span class="editable-label">PROMO</span>
+            <h3>Promoción secundaria</h3>
+            <p>Cambia esta tarjeta por una oferta, una colección o un acceso rápido importante.</p>
+            <img src="images/2.png" alt="Imagen promocional de relleno 1">
+            <a href="#" class="btn btn-outline">Ver más</a>
+          </article>
+          <!-- FIN ZONA EDITABLE: TARJETA LATERAL 1 -->
+
+          <!-- INICIO ZONA EDITABLE: TARJETA LATERAL 2 -->
+          <article class="side-card card hover-lift editable-zone reveal">
+            <span class="editable-label">PROMO</span>
+            <h3>Otra entrada comercial</h3>
+            <p>Ideal para mostrar una categoría clave, una ventaja competitiva o una campaña premium.</p>
+            <img src="images/3.png" alt="Imagen promocional de relleno 2">
+            <a href="#" class="btn btn-outline">Explorar</a>
+          </article>
+          <!-- FIN ZONA EDITABLE: TARJETA LATERAL 2 -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Entradas promocionales</h2>
+
+        <div class="promo-grid">
+
+          <!-- INICIO ZONA EDITABLE: TARJETA PROMO 1 -->
+          <article class="promo-card card hover-lift editable-zone reveal">
+            <span class="editable-label">EDITABLE</span>
+            <h3>Hogar y ambientes</h3>
+            <img src="https://placehold.co/500x350/png?text=Hogar" alt="Imagen de relleno hogar">
+            <a href="#">Descubrir ahora</a>
+          </article>
+          <!-- FIN ZONA EDITABLE: TARJETA PROMO 1 -->
+
+          <!-- INICIO ZONA EDITABLE: TARJETA PROMO 2 -->
+          <article class="promo-card card hover-lift editable-zone reveal">
+            <span class="editable-label">EDITABLE</span>
+            <h3>Tecnología útil</h3>
+            <img src="https://placehold.co/500x350/png?text=Tecnologia" alt="Imagen de relleno tecnología">
+            <a href="#">Ver selección</a>
+          </article>
+          <!-- FIN ZONA EDITABLE: TARJETA PROMO 2 -->
+
+          <!-- INICIO ZONA EDITABLE: TARJETA PROMO 3 -->
+          <article class="promo-card card hover-lift editable-zone reveal">
+            <span class="editable-label">EDITABLE</span>
+            <h3>Accesorios recomendados</h3>
+            <img src="https://placehold.co/500x350/png?text=Accesorios" alt="Imagen de relleno accesorios">
+            <a href="#">Comprar más</a>
+          </article>
+          <!-- FIN ZONA EDITABLE: TARJETA PROMO 3 -->
+
+          <!-- INICIO ZONA EDITABLE: TARJETA PROMO 4 -->
+          <article class="promo-card card hover-lift editable-zone reveal">
+            <span class="editable-label">EDITABLE</span>
+            <h3>Nuevas oportunidades</h3>
+            <img src="https://placehold.co/500x350/png?text=Coleccion" alt="Imagen de relleno colección">
+            <a href="#">Explorar categoría</a>
+          </article>
+          <!-- FIN ZONA EDITABLE: TARJETA PROMO 4 -->
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Categorías destacadas</h2>
+
+        <div class="categories-grid">
+
+          <!-- INICIO ZONA EDITABLE: CATEGORÍA 1 -->
+          <article class="category-card card hover-lift editable-zone reveal">
+            <span class="editable-label">CATEGORÍA</span>
+            <img src="https://placehold.co/400x320/png?text=Categoria+1" alt="Categoría 1">
+            <h3>Hogar</h3>
+            <p>Textiles, orden y detalles para espacios funcionales.</p>
+          </article>
+          <!-- FIN ZONA EDITABLE: CATEGORÍA 1 -->
+
+          <!-- INICIO ZONA EDITABLE: CATEGORÍA 2 -->
+          <article class="category-card card hover-lift editable-zone reveal">
+            <span class="editable-label">CATEGORÍA</span>
+            <img src="https://placehold.co/400x320/png?text=Categoria+2" alt="Categoría 2">
+            <h3>Tecnología</h3>
+            <p>Equipos, accesorios y soluciones modernas.</p>
+          </article>
+          <!-- FIN ZONA EDITABLE: CATEGORÍA 2 -->
+
+          <!-- INICIO ZONA EDITABLE: CATEGORÍA 3 -->
+          <article class="category-card card hover-lift editable-zone reveal">
+            <span class="editable-label">CATEGORÍA</span>
+            <img src="https://placehold.co/400x320/png?text=Categoria+3" alt="Categoría 3">
+            <h3>Oficina</h3>
+            <p>Productividad, papelería y organización profesional.</p>
+          </article>
+          <!-- FIN ZONA EDITABLE: CATEGORÍA 3 -->
+
+          <!-- INICIO ZONA EDITABLE: CATEGORÍA 4 -->
+          <article class="category-card card hover-lift editable-zone reveal">
+            <span class="editable-label">CATEGORÍA</span>
+            <img src="https://placehold.co/400x320/png?text=Categoria+4" alt="Categoría 4">
+            <h3>Moda</h3>
+            <p>Piezas, accesorios y productos con estilo adaptable.</p>
+          </article>
+          <!-- FIN ZONA EDITABLE: CATEGORÍA 4 -->
+
+          <!-- INICIO ZONA EDITABLE: CATEGORÍA 5 -->
+          <article class="category-card card hover-lift editable-zone reveal">
+            <span class="editable-label">CATEGORÍA</span>
+            <img src="https://placehold.co/400x320/png?text=Categoria+5" alt="Categoría 5">
+            <h3>Temporada</h3>
+            <p>Campañas, regalos y promociones estratégicas.</p>
+          </article>
+          <!-- FIN ZONA EDITABLE: CATEGORÍA 5 -->
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Productos destacados</h2>
+
+        <div class="products-grid">
+
+          <article class="product-card card hover-lift editable-zone reveal">
+            <span class="editable-label">PRODUCTO</span>
+            <div class="product-media">
+              <span class="badge">Oferta</span>
+              <img src="images/4.png" alt="Producto 1">
+            </div>
+            <h3 class="product-title">PRODUCTO DEMO 01 | Nombre editable</h3>
+            <div class="rating">★★★★☆ (124)</div>
+            <div class="price-row">
+              <span class="price">€39.90</span>
+              <span class="old-price">€59.90</span>
+            </div>
+            <p class="product-desc">Descripción breve editable para resaltar el principal beneficio.</p>
+            <a href="#" class="btn btn-primary">Añadir al carrito</a>
+          </article>
+
+          <article class="product-card card hover-lift editable-zone reveal">
+            <span class="editable-label">PRODUCTO</span>
+            <div class="product-media">
+              <span class="badge">Nuevo</span>
+              <img src="images/5.png" alt="Producto 2">
+            </div>
+            <h3 class="product-title">PRODUCTO DEMO 02 | Título editable</h3>
+            <div class="rating">★★★★★ (89)</div>
+            <div class="price-row">
+              <span class="price">€64.90</span>
+              <span class="old-price">€79.90</span>
+            </div>
+            <p class="product-desc">Cambia imagen, nombre, precio y llamada a la acción con rapidez.</p>
+            <a href="#" class="btn btn-primary">Añadir al carrito</a>
+          </article>
+
+          <article class="product-card card hover-lift editable-zone reveal">
+            <span class="editable-label">PRODUCTO</span>
+            <div class="product-media">
+              <span class="badge">Top ventas</span>
+              <img src="images/6.png" alt="Producto 3">
+            </div>
+            <h3 class="product-title">PRODUCTO DEMO 03 | Editable</h3>
+            <div class="rating">★★★★☆ (203)</div>
+            <div class="price-row">
+              <span class="price">€24.90</span>
+              <span class="old-price">€34.90</span>
+            </div>
+            <p class="product-desc">Sección lista para colocar tu producto estrella o más vendido.</p>
+            <a href="#" class="btn btn-primary">Añadir al carrito</a>
+          </article>
+
+          <article class="product-card card hover-lift editable-zone reveal">
+            <span class="editable-label">PRODUCTO</span>
+            <div class="product-media">
+              <span class="badge">Ahorro</span>
+              <img src="images/7.png" alt="Producto 4">
+            </div>
+            <h3 class="product-title">PRODUCTO DEMO 04 | Nombre personalizable</h3>
+            <div class="rating">★★★★★ (58)</div>
+            <div class="price-row">
+              <span class="price">€89.90</span>
+              <span class="old-price">€119.90</span>
+            </div>
+            <p class="product-desc">Perfecto para bundles, servicios o líneas premium.</p>
+            <a href="#" class="btn btn-primary">Añadir al carrito</a>
+          </article>
+
+          <article class="product-card card hover-lift editable-zone reveal">
+            <span class="editable-label">PRODUCTO</span>
+            <div class="product-media">
+              <span class="badge">Popular</span>
+              <img src="images/8.png" alt="Producto 5">
+            </div>
+            <h3 class="product-title">PRODUCTO DEMO 05 | Editable</h3>
+            <div class="rating">★★★★☆ (76)</div>
+            <div class="price-row">
+              <span class="price">€18.90</span>
+              <span class="old-price">€25.90</span>
+            </div>
+            <p class="product-desc">Zona editable pensada para sustitución rápida del contenido.</p>
+            <a href="#" class="btn btn-primary">Añadir al carrito</a>
+          </article>
+
+          <article class="product-card card hover-lift editable-zone reveal">
+            <span class="editable-label">PRODUCTO</span>
+            <div class="product-media">
+              <span class="badge">Selección</span>
+              <img src="images/9.png" alt="Producto 6">
+            </div>
+            <h3 class="product-title">PRODUCTO DEMO 06 | Nombre editable</h3>
+            <div class="rating">★★★★★ (142)</div>
+            <div class="price-row">
+              <span class="price">€54.90</span>
+              <span class="old-price">€69.90</span>
+            </div>
+            <p class="product-desc">Sustituye con tus imágenes, fichas, CTA y precios.</p>
+            <a href="#" class="btn btn-primary">Añadir al carrito</a>
+          </article>
+
+          <article class="product-card card hover-lift editable-zone reveal">
+            <span class="editable-label">PRODUCTO</span>
+            <div class="product-media">
+              <span class="badge">Pack</span>
+              <img src="images/10.png" alt="Producto 7">
+            </div>
+            <h3 class="product-title">PRODUCTO DEMO 07 | Título editable</h3>
+            <div class="rating">★★★★☆ (65)</div>
+            <div class="price-row">
+              <span class="price">€74.90</span>
+              <span class="old-price">€99.90</span>
+            </div>
+            <p class="product-desc">Ideal para destacar promociones especiales o packs.</p>
+            <a href="#" class="btn btn-primary">Añadir al carrito</a>
+          </article>
+
+          <article class="product-card card hover-lift editable-zone reveal">
+            <span class="editable-label">PRODUCTO</span>
+            <div class="product-media">
+              <span class="badge">Recomendado</span>
+              <img src="images/11.png" alt="Producto 8">
+            </div>
+            <h3 class="product-title">PRODUCTO DEMO 08 | Nombre editable</h3>
+            <div class="rating">★★★★★ (210)</div>
+            <div class="price-row">
+              <span class="price">€29.90</span>
+              <span class="old-price">€39.90</span>
+            </div>
+            <p class="product-desc">Diseñado para que personalices la home sin esfuerzo.</p>
+            <a href="#" class="btn btn-primary">Añadir al carrito</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Ventajas para tus clientes</h2>
+
+        <div class="benefits-grid">
+
+          <!-- INICIO ZONA EDITABLE: BENEFICIO 1 -->
+          <article class="benefit-card card hover-lift editable-zone reveal">
+            <span class="editable-label">BENEFICIO</span>
+            <div class="benefit-icon">🚚</div>
+            <h3>Envíos rápidos</h3>
+            <p>Modifica este texto con tu cobertura, tiempos y ventajas logísticas.</p>
+          </article>
+          <!-- FIN ZONA EDITABLE: BENEFICIO 1 -->
+
+          <!-- INICIO ZONA EDITABLE: BENEFICIO 2 -->
+          <article class="benefit-card card hover-lift editable-zone reveal">
+            <span class="editable-label">BENEFICIO</span>
+            <div class="benefit-icon">💳</div>
+            <h3>Pago seguro</h3>
+            <p>Explica aquí la confianza, los métodos y la seguridad de compra.</p>
+          </article>
+          <!-- FIN ZONA EDITABLE: BENEFICIO 2 -->
+
+          <!-- INICIO ZONA EDITABLE: BENEFICIO 3 -->
+          <article class="benefit-card card hover-lift editable-zone reveal">
+            <span class="editable-label">BENEFICIO</span>
+            <div class="benefit-icon">🔄</div>
+            <h3>Devolución sencilla</h3>
+            <p>Perfecto para resumir tus políticas o condiciones de cambio.</p>
+          </article>
+          <!-- FIN ZONA EDITABLE: BENEFICIO 3 -->
+
+          <!-- INICIO ZONA EDITABLE: BENEFICIO 4 -->
+          <article class="benefit-card card hover-lift editable-zone reveal">
+            <span class="editable-label">BENEFICIO</span>
+            <div class="benefit-icon">📞</div>
+            <h3>Soporte directo</h3>
+            <p>Usa esta zona para atención personalizada, postventa o contacto.</p>
+          </article>
+          <!-- FIN ZONA EDITABLE: BENEFICIO 4 -->
+
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer>
+    <div class="container footer-top">
+      <div class="footer-grid">
+
+        <!-- INICIO ZONA EDITABLE: FOOTER MARCA -->
+        <div class="footer-box editable-zone reveal">
+          <span class="editable-label">FOOTER</span>
+          <h4>NovaMarket</h4>
+          <p>
+            Sustituye esta descripción por la propuesta de valor de tu empresa, negocio o tienda online.
+          </p>
+        </div>
+        <!-- FIN ZONA EDITABLE: FOOTER MARCA -->
+
+        <!-- INICIO ZONA EDITABLE: FOOTER EMPRESA -->
+        <div class="footer-box editable-zone reveal">
+          <span class="editable-label">ENLACES</span>
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="#">Quiénes somos</a></li>
+            <li><a href="#">Novedades</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Trabaja con nosotros</a></li>
+          </ul>
+        </div>
+        <!-- FIN ZONA EDITABLE: FOOTER EMPRESA -->
+
+        <!-- INICIO ZONA EDITABLE: FOOTER AYUDA -->
+        <div class="footer-box editable-zone reveal">
+          <span class="editable-label">ENLACES</span>
+          <h4>Ayuda</h4>
+          <ul>
+            <li><a href="#">Centro de ayuda</a></li>
+            <li><a href="#">Envíos</a></li>
+            <li><a href="#">Devoluciones</a></li>
+            <li><a href="#">Pagos</a></li>
+          </ul>
+        </div>
+        <!-- FIN ZONA EDITABLE: FOOTER AYUDA -->
+
+        <!-- INICIO ZONA EDITABLE: FOOTER CATEGORÍAS -->
+        <div class="footer-box editable-zone reveal">
+          <span class="editable-label">ENLACES</span>
+          <h4>Categorías</h4>
+          <ul>
+            <li><a href="#">Hogar</a></li>
+            <li><a href="#">Tecnología</a></li>
+            <li><a href="#">Moda</a></li>
+            <li><a href="#">Oficina</a></li>
+          </ul>
+        </div>
+        <!-- FIN ZONA EDITABLE: FOOTER CATEGORÍAS -->
+
+        <!-- INICIO ZONA EDITABLE: FOOTER CONTACTO -->
+        <div class="footer-box editable-zone reveal">
+          <span class="editable-label">CONTACTO</span>
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:contacto@gvatransport.com">contacto@gvatransport.com</a></li>
+            <li><a href="#">+00 000 000 000</a></li>
+            <li><a href="#">Tu dirección comercial</a></li>
+            <li><a href="#">Redes sociales</a></li>
+          </ul>
+        </div>
+        <!-- FIN ZONA EDITABLE: FOOTER CONTACTO -->
+
+      </div>
+    </div>
+
+    <!-- INICIO ZONA EDITABLE: FOOTER LEGAL -->
+    <div class="container footer-bottom editable-zone reveal" style="margin-bottom:18px;">
+      <span class="editable-label">LEGAL</span>
+      <span class="legal-copy">© 2026 Mikimando. Esta plantilla es editable y está preparada para adaptar textos, imágenes, enlaces y productos.</span>
+    </div>
+    <!-- FIN ZONA EDITABLE: FOOTER LEGAL -->
+  </footer>
+
+  <script>
+    const translations = {
+      es: {
+        pageTitle: 'Marketplace Pro | Plantilla Editable Animada',
+        langLabel: 'Idioma',
+        topbar: 'Envíos rápidos, promociones diarias y atención personalizada para tus clientes.',
+        brandSmall: 'Tienda online',
+        locationSmall: 'Enviar a',
+        locationStrong: 'Tu ciudad o tu zona principal',
+        searchPlaceholder: 'Buscar productos, categorías y promociones...',
+        searchCategories: ['Todas las categorías', 'Hogar', 'Tecnología', 'Moda', 'Oficina', 'Temporada'],
+        accountSpans: ['Hola, accede', 'Gestión rápida', 'Compra actual'],
+        accountStrongs: ['Cuenta y listas', 'Pedidos', 'Carrito'],
+        nav: ['☰ Explorar', 'Ofertas del día', 'Novedades', 'Tecnología', 'Hogar', 'Moda', 'Oficina', 'Accesorios', 'Temporada', 'Atención al cliente'],
+        heroEyebrow: 'Lanzamiento destacado',
+        heroTitle: 'Una home de marketplace más premium, visual y preparada para personalizar',
+        heroDescription: 'Sustituye este bloque por tu propuesta de valor. Esta plantilla está pensada para mostrar muchas entradas comerciales, productos, banners y módulos con una estética sólida.',
+        heroButtons: ['Comprar ahora', 'Ver colecciones'],
+        heroFeatures: ['Envío rápido', 'Pago seguro', 'Ofertas destacadas'],
+        floatingTitles: ['Campaña visible', 'Producto estrella'],
+        floatingTexts: ['Edita este bloque rápido', 'Oferta o mensaje destacado'],
+        sideCardTitles: ['Promoción secundaria', 'Otra entrada comercial'],
+        sideCardTexts: ['Cambia esta tarjeta por una oferta, una colección o un acceso rápido importante.', 'Ideal para mostrar una categoría clave, una ventaja competitiva o una campaña premium.'],
+        sideCardButtons: ['Ver más', 'Explorar'],
+        sectionTitles: ['Entradas promocionales', 'Categorías destacadas', 'Productos destacados', 'Ventajas para tus clientes'],
+        promoTitles: ['Hogar y ambientes', 'Tecnología útil', 'Accesorios recomendados', 'Nuevas oportunidades'],
+        promoLinks: ['Descubrir ahora', 'Ver selección', 'Comprar más', 'Explorar categoría'],
+        categoryTitles: ['Hogar', 'Tecnología', 'Oficina', 'Moda', 'Temporada'],
+        categoryTexts: ['Textiles, orden y detalles para espacios funcionales.', 'Equipos, accesorios y soluciones modernas.', 'Productividad, papelería y organización profesional.', 'Piezas, accesorios y productos con estilo adaptable.', 'Campañas, regalos y promociones estratégicas.'],
+        productBadges: ['Oferta', 'Nuevo', 'Top ventas', 'Ahorro', 'Popular', 'Selección', 'Pack', 'Recomendado'],
+        productTitles: ['PRODUCTO DEMO 01 | Nombre editable', 'PRODUCTO DEMO 02 | Título editable', 'PRODUCTO DEMO 03 | Editable', 'PRODUCTO DEMO 04 | Nombre personalizable', 'PRODUCTO DEMO 05 | Editable', 'PRODUCTO DEMO 06 | Nombre editable', 'PRODUCTO DEMO 07 | Título editable', 'PRODUCTO DEMO 08 | Nombre editable'],
+        productDescriptions: ['Descripción breve editable para resaltar el principal beneficio.', 'Cambia imagen, nombre, precio y llamada a la acción con rapidez.', 'Sección lista para colocar tu producto estrella o más vendido.', 'Perfecto para bundles, servicios o líneas premium.', 'Zona editable pensada para sustitución rápida del contenido.', 'Sustituye con tus imágenes, fichas, CTA y precios.', 'Ideal para destacar promociones especiales o packs.', 'Diseñado para que personalices la home sin esfuerzo.'],
+        productButtons: ['Añadir al carrito', 'Añadir al carrito', 'Añadir al carrito', 'Añadir al carrito', 'Añadir al carrito', 'Añadir al carrito', 'Añadir al carrito', 'Añadir al carrito'],
+        benefitTitles: ['Envíos rápidos', 'Pago seguro', 'Devolución sencilla', 'Soporte directo'],
+        benefitTexts: ['Modifica este texto con tu cobertura, tiempos y ventajas logísticas.', 'Explica aquí la confianza, los métodos y la seguridad de compra.', 'Perfecto para resumir tus políticas o condiciones de cambio.', 'Usa esta zona para atención personalizada, postventa o contacto.'],
+        footerBrandText: 'Sustituye esta descripción por la propuesta de valor de tu empresa, negocio o tienda online.',
+        footerHeadings: ['Empresa', 'Ayuda', 'Categorías', 'Contacto'],
+        footerLists: [
+          ['Quiénes somos', 'Novedades', 'Blog', 'Trabaja con nosotros'],
+          ['Centro de ayuda', 'Envíos', 'Devoluciones', 'Pagos'],
+          ['Hogar', 'Tecnología', 'Moda', 'Oficina'],
+          ['contacto@gvatransport.com', '+00 000 000 000', 'Tu dirección comercial', 'Redes sociales']
+        ],
+        legal: '© 2026 Mikimando. Esta plantilla es editable y está preparada para adaptar textos, imágenes, enlaces y productos.'
+      },
+      en: {
+        pageTitle: 'Marketplace Pro | Editable Animated Template',
+        langLabel: 'Language',
+        topbar: 'Fast shipping, daily promotions and personalized support for your customers.',
+        brandSmall: 'Online store',
+        locationSmall: 'Deliver to',
+        locationStrong: 'Your city or main service area',
+        searchPlaceholder: 'Search products, categories and promotions...',
+        searchCategories: ['All categories', 'Home', 'Technology', 'Fashion', 'Office', 'Seasonal'],
+        accountSpans: ['Hello, sign in', 'Quick access', 'Current order'],
+        accountStrongs: ['Account & lists', 'Orders', 'Cart'],
+        nav: ['☰ Explore', 'Today\'s deals', 'New arrivals', 'Technology', 'Home', 'Fashion', 'Office', 'Accessories', 'Seasonal', 'Customer service'],
+        heroEyebrow: 'Featured launch',
+        heroTitle: 'A more premium and visual marketplace homepage ready to customize',
+        heroDescription: 'Replace this block with your value proposition. This template is designed to showcase commercial entries, products, banners and modules with a solid visual style.',
+        heroButtons: ['Shop now', 'View collections'],
+        heroFeatures: ['Fast delivery', 'Secure payment', 'Featured deals'],
+        floatingTitles: ['Visible campaign', 'Star product'],
+        floatingTexts: ['Edit this block quickly', 'Deal or highlighted message'],
+        sideCardTitles: ['Secondary promotion', 'Another commercial entry'],
+        sideCardTexts: ['Turn this card into a deal, a collection or an important quick access point.', 'Ideal for showcasing a key category, a competitive advantage or a premium campaign.'],
+        sideCardButtons: ['See more', 'Explore'],
+        sectionTitles: ['Promotional entries', 'Featured categories', 'Featured products', 'Benefits for your customers'],
+        promoTitles: ['Home and living', 'Useful technology', 'Recommended accessories', 'New opportunities'],
+        promoLinks: ['Discover now', 'View selection', 'Buy more', 'Explore category'],
+        categoryTitles: ['Home', 'Technology', 'Office', 'Fashion', 'Seasonal'],
+        categoryTexts: ['Textiles, organization and details for functional spaces.', 'Devices, accessories and modern solutions.', 'Productivity, stationery and professional organization.', 'Pieces, accessories and products with adaptable style.', 'Campaigns, gifts and strategic promotions.'],
+        productBadges: ['Deal', 'New', 'Best seller', 'Savings', 'Popular', 'Selection', 'Bundle', 'Recommended'],
+        productTitles: ['DEMO PRODUCT 01 | Editable name', 'DEMO PRODUCT 02 | Editable title', 'DEMO PRODUCT 03 | Editable', 'DEMO PRODUCT 04 | Customizable name', 'DEMO PRODUCT 05 | Editable', 'DEMO PRODUCT 06 | Editable name', 'DEMO PRODUCT 07 | Editable title', 'DEMO PRODUCT 08 | Editable name'],
+        productDescriptions: ['Editable short description to highlight the main benefit.', 'Change image, name, price and call to action quickly.', 'Section ready for your star or best-selling product.', 'Perfect for bundles, services or premium lines.', 'Editable area designed for fast content replacement.', 'Replace with your images, product sheets, CTA and prices.', 'Ideal for highlighting special promotions or bundles.', 'Designed so you can personalize the homepage effortlessly.'],
+        productButtons: ['Add to cart', 'Add to cart', 'Add to cart', 'Add to cart', 'Add to cart', 'Add to cart', 'Add to cart', 'Add to cart'],
+        benefitTitles: ['Fast shipping', 'Secure payment', 'Easy returns', 'Direct support'],
+        benefitTexts: ['Update this text with your coverage, timing and logistics advantages.', 'Explain trust, payment methods and shopping security here.', 'Perfect for summarizing your exchange or return policies.', 'Use this area for personalized service, after-sales or contact.'],
+        footerBrandText: 'Replace this description with the value proposition of your company, business or online store.',
+        footerHeadings: ['Company', 'Help', 'Categories', 'Contact'],
+        footerLists: [
+          ['About us', 'News', 'Blog', 'Careers'],
+          ['Help center', 'Shipping', 'Returns', 'Payments'],
+          ['Home', 'Technology', 'Fashion', 'Office'],
+          ['contacto@gvatransport.com', '+00 000 000 000', 'Your business address', 'Social media']
+        ],
+        legal: '© 2026 Mikimando. This template is editable and ready to adapt texts, images, links and products.'
+      },
+      fr: {
+        pageTitle: 'Marketplace Pro | Modèle animé modifiable',
+        langLabel: 'Langue',
+        topbar: 'Livraisons rapides, promotions quotidiennes et assistance personnalisée pour vos clients.',
+        brandSmall: 'Boutique en ligne',
+        locationSmall: 'Livrer à',
+        locationStrong: 'Votre ville ou votre zone principale',
+        searchPlaceholder: 'Rechercher des produits, catégories et promotions...',
+        searchCategories: ['Toutes les catégories', 'Maison', 'Technologie', 'Mode', 'Bureau', 'Saisonnier'],
+        accountSpans: ['Bonjour, connectez-vous', 'Accès rapide', 'Commande en cours'],
+        accountStrongs: ['Compte et listes', 'Commandes', 'Panier'],
+        nav: ['☰ Explorer', 'Offres du jour', 'Nouveautés', 'Technologie', 'Maison', 'Mode', 'Bureau', 'Accessoires', 'Saisonnier', 'Service client'],
+        heroEyebrow: 'Lancement vedette',
+        heroTitle: 'Une page d’accueil marketplace plus premium et visuelle, prête à personnaliser',
+        heroDescription: 'Remplacez ce bloc par votre proposition de valeur. Ce modèle est conçu pour présenter des produits, bannières et modules commerciaux avec une esthétique solide.',
+        heroButtons: ['Acheter maintenant', 'Voir les collections'],
+        heroFeatures: ['Livraison rapide', 'Paiement sécurisé', 'Offres mises en avant'],
+        floatingTitles: ['Campagne visible', 'Produit vedette'],
+        floatingTexts: ['Modifiez ce bloc rapidement', 'Offre ou message mis en avant'],
+        sideCardTitles: ['Promotion secondaire', 'Autre entrée commerciale'],
+        sideCardTexts: ['Transformez cette carte en offre, collection ou accès rapide important.', 'Idéal pour mettre en avant une catégorie clé, un avantage concurrentiel ou une campagne premium.'],
+        sideCardButtons: ['Voir plus', 'Explorer'],
+        sectionTitles: ['Blocs promotionnels', 'Catégories vedettes', 'Produits vedettes', 'Avantages pour vos clients'],
+        promoTitles: ['Maison et ambiance', 'Technologie utile', 'Accessoires recommandés', 'Nouvelles opportunités'],
+        promoLinks: ['Découvrir', 'Voir la sélection', 'Acheter plus', 'Explorer la catégorie'],
+        categoryTitles: ['Maison', 'Technologie', 'Bureau', 'Mode', 'Saisonnier'],
+        categoryTexts: ['Textiles, rangement et détails pour des espaces fonctionnels.', 'Appareils, accessoires et solutions modernes.', 'Productivité, papeterie et organisation professionnelle.', 'Pièces, accessoires et produits au style adaptable.', 'Campagnes, cadeaux et promotions stratégiques.'],
+        productBadges: ['Offre', 'Nouveau', 'Meilleure vente', 'Économie', 'Populaire', 'Sélection', 'Pack', 'Recommandé'],
+        productTitles: ['PRODUIT DÉMO 01 | Nom modifiable', 'PRODUIT DÉMO 02 | Titre modifiable', 'PRODUIT DÉMO 03 | Modifiable', 'PRODUIT DÉMO 04 | Nom personnalisable', 'PRODUIT DÉMO 05 | Modifiable', 'PRODUIT DÉMO 06 | Nom modifiable', 'PRODUIT DÉMO 07 | Titre modifiable', 'PRODUIT DÉMO 08 | Nom modifiable'],
+        productDescriptions: ['Description courte modifiable pour mettre en avant le principal avantage.', 'Changez rapidement l’image, le nom, le prix et l’appel à l’action.', 'Section prête pour votre produit vedette ou le plus vendu.', 'Parfait pour des packs, services ou gammes premium.', 'Zone modifiable conçue pour remplacer rapidement le contenu.', 'Remplacez par vos images, fiches, CTA et prix.', 'Idéal pour mettre en avant des promotions spéciales ou des packs.', 'Conçu pour personnaliser la page d’accueil sans effort.'],
+        productButtons: ['Ajouter au panier', 'Ajouter au panier', 'Ajouter au panier', 'Ajouter au panier', 'Ajouter au panier', 'Ajouter au panier', 'Ajouter au panier', 'Ajouter au panier'],
+        benefitTitles: ['Livraisons rapides', 'Paiement sécurisé', 'Retour facile', 'Support direct'],
+        benefitTexts: ['Modifiez ce texte avec votre couverture, vos délais et vos avantages logistiques.', 'Expliquez ici la confiance, les moyens de paiement et la sécurité d’achat.', 'Parfait pour résumer vos politiques d’échange ou de retour.', 'Utilisez cette zone pour le service personnalisé, l’après-vente ou le contact.'],
+        footerBrandText: 'Remplacez cette description par la proposition de valeur de votre entreprise, activité ou boutique en ligne.',
+        footerHeadings: ['Entreprise', 'Aide', 'Catégories', 'Contact'],
+        footerLists: [
+          ['Qui sommes-nous', 'Nouveautés', 'Blog', 'Carrières'],
+          ['Centre d’aide', 'Livraisons', 'Retours', 'Paiements'],
+          ['Maison', 'Technologie', 'Mode', 'Bureau'],
+          ['contacto@novamarket.com', '+00 000 000 000', 'Votre adresse commerciale', 'Réseaux sociaux']
+        ],
+        legal: '© 2026 Mikimando. Ce modèle est modifiable et prêt à adapter textes, images, liens et produits.'
+      },
+      de: {
+        pageTitle: 'Marketplace Pro | Bearbeitbare animierte Vorlage',
+        langLabel: 'Sprache',
+        topbar: 'Schneller Versand, tägliche Angebote und persönlicher Support für Ihre Kunden.',
+        brandSmall: 'Onlineshop',
+        locationSmall: 'Liefern nach',
+        locationStrong: 'Ihre Stadt oder Ihr Hauptgebiet',
+        searchPlaceholder: 'Produkte, Kategorien und Aktionen suchen...',
+        searchCategories: ['Alle Kategorien', 'Wohnen', 'Technik', 'Mode', 'Büro', 'Saisonal'],
+        accountSpans: ['Hallo, anmelden', 'Schnellzugriff', 'Aktuelle Bestellung'],
+        accountStrongs: ['Konto und Listen', 'Bestellungen', 'Warenkorb'],
+        nav: ['☰ Entdecken', 'Angebote des Tages', 'Neuheiten', 'Technik', 'Wohnen', 'Mode', 'Büro', 'Accessoires', 'Saisonal', 'Kundendienst'],
+        heroEyebrow: 'Highlight-Launch',
+        heroTitle: 'Eine hochwertigere und visuell stärkere Marketplace-Startseite zum Personalisieren',
+        heroDescription: 'Ersetzen Sie diesen Block durch Ihr Wertversprechen. Diese Vorlage ist dafür gedacht, Produkte, Banner und Module mit einer starken Optik zu präsentieren.',
+        heroButtons: ['Jetzt kaufen', 'Kollektionen ansehen'],
+        heroFeatures: ['Schnelle Lieferung', 'Sichere Zahlung', 'Top-Angebote'],
+        floatingTitles: ['Sichtbare Kampagne', 'Top-Produkt'],
+        floatingTexts: ['Diesen Block schnell bearbeiten', 'Angebot oder hervorgehobene Botschaft'],
+        sideCardTitles: ['Sekundäre Aktion', 'Weiterer kommerzieller Bereich'],
+        sideCardTexts: ['Nutzen Sie diese Karte für ein Angebot, eine Kollektion oder einen wichtigen Schnellzugriff.', 'Ideal, um eine Schlüssel-Kategorie, einen Wettbewerbsvorteil oder eine Premium-Kampagne hervorzuheben.'],
+        sideCardButtons: ['Mehr sehen', 'Entdecken'],
+        sectionTitles: ['Promotionsbereiche', 'Ausgewählte Kategorien', 'Ausgewählte Produkte', 'Vorteile für Ihre Kunden'],
+        promoTitles: ['Wohnen und Ambiente', 'Nützliche Technik', 'Empfohlene Accessoires', 'Neue Chancen'],
+        promoLinks: ['Jetzt entdecken', 'Auswahl ansehen', 'Mehr kaufen', 'Kategorie erkunden'],
+        categoryTitles: ['Wohnen', 'Technik', 'Büro', 'Mode', 'Saisonal'],
+        categoryTexts: ['Textilien, Ordnung und Details für funktionale Räume.', 'Geräte, Zubehör und moderne Lösungen.', 'Produktivität, Schreibwaren und professionelle Organisation.', 'Teile, Accessoires und Produkte mit flexiblem Stil.', 'Kampagnen, Geschenke und strategische Aktionen.'],
+        productBadges: ['Angebot', 'Neu', 'Bestseller', 'Sparen', 'Beliebt', 'Auswahl', 'Bundle', 'Empfohlen'],
+        productTitles: ['DEMO PRODUKT 01 | Bearbeitbarer Name', 'DEMO PRODUKT 02 | Bearbeitbarer Titel', 'DEMO PRODUKT 03 | Bearbeitbar', 'DEMO PRODUKT 04 | Anpassbarer Name', 'DEMO PRODUKT 05 | Bearbeitbar', 'DEMO PRODUKT 06 | Bearbeitbarer Name', 'DEMO PRODUKT 07 | Bearbeitbarer Titel', 'DEMO PRODUKT 08 | Bearbeitbarer Name'],
+        productDescriptions: ['Bearbeitbare Kurzbeschreibung, um den Hauptvorteil hervorzuheben.', 'Bild, Name, Preis und Call-to-Action schnell ändern.', 'Bereich für Ihr Star- oder meistverkauftes Produkt.', 'Perfekt für Bundles, Services oder Premium-Linien.', 'Bearbeitbarer Bereich für schnellen Austausch von Inhalten.', 'Ersetzen Sie ihn durch Ihre Bilder, Produktdaten, CTA und Preise.', 'Ideal, um Sonderaktionen oder Bundles hervorzuheben.', 'Entwickelt, damit Sie die Startseite mühelos personalisieren können.'],
+        productButtons: ['In den Warenkorb', 'In den Warenkorb', 'In den Warenkorb', 'In den Warenkorb', 'In den Warenkorb', 'In den Warenkorb', 'In den Warenkorb', 'In den Warenkorb'],
+        benefitTitles: ['Schneller Versand', 'Sichere Zahlung', 'Einfache Rückgabe', 'Direkter Support'],
+        benefitTexts: ['Passen Sie diesen Text an Ihre Abdeckung, Zeiten und Logistikvorteile an.', 'Erklären Sie hier Vertrauen, Zahlungsarten und Kaufsicherheit.', 'Perfekt, um Ihre Umtausch- oder Rückgaberichtlinien zusammenzufassen.', 'Nutzen Sie diesen Bereich für persönlichen Service, After-Sales oder Kontakt.'],
+        footerBrandText: 'Ersetzen Sie diese Beschreibung durch das Wertversprechen Ihres Unternehmens, Geschäfts oder Onlineshops.',
+        footerHeadings: ['Unternehmen', 'Hilfe', 'Kategorien', 'Kontakt'],
+        footerLists: [
+          ['Über uns', 'Neuheiten', 'Blog', 'Karriere'],
+          ['Hilfecenter', 'Versand', 'Rückgaben', 'Zahlungen'],
+          ['Wohnen', 'Technik', 'Mode', 'Büro'],
+          ['contacto@novamarket.com', '+00 000 000 000', 'Ihre Geschäftsadresse', 'Soziale Netzwerke']
+        ],
+        legal: '© 2026 Mikimando. Diese Vorlage ist bearbeitbar und bereit, Texte, Bilder, Links und Produkte anzupassen.'
+      }
+    };
+
+    const setText = (selector, value) => {
+      const el = document.querySelector(selector);
+      if (el && typeof value === 'string') el.textContent = value;
+    };
+
+    const setAllText = (selector, values) => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach((el, index) => {
+        if (values[index] !== undefined) {
+          el.textContent = values[index];
+        }
+      });
+    };
+
+    const applyLanguage = (lang) => {
+      const t = translations[lang] || translations.es;
+      document.documentElement.lang = lang;
+      document.title = t.pageTitle;
+
+      setText('.lang-label', t.langLabel);
+      setText('.topbar-inner', t.topbar);
+      setText('.brand small', t.brandSmall);
+      setText('.location-box small', t.locationSmall);
+      setText('.location-box strong', t.locationStrong);
+
+      const searchInput = document.querySelector('.search-form input');
+      if (searchInput) searchInput.placeholder = t.searchPlaceholder;
+
+      const searchSelect = document.querySelector('.search-form select');
+      if (searchSelect) {
+        [...searchSelect.options].forEach((option, index) => {
+          if (t.searchCategories[index] !== undefined) option.textContent = t.searchCategories[index];
+        });
+      }
+
+      setAllText('.header-actions .action-link span', t.accountSpans);
+      setAllText('.header-actions .action-link strong', t.accountStrongs);
+      setAllText('.nav-link', t.nav);
+
+      setText('.hero-copy .eyebrow', t.heroEyebrow);
+      setText('.hero-copy h1', t.heroTitle);
+      setText('.hero-copy p', t.heroDescription);
+      setAllText('.hero-actions-row .btn', t.heroButtons);
+      setAllText('.hero-features .mini-pill', t.heroFeatures);
+      setAllText('.floating-card strong', t.floatingTitles);
+      setAllText('.floating-card span', t.floatingTexts);
+
+      document.querySelectorAll('.hero-side .side-card').forEach((card, index) => {
+        const title = card.querySelector('h3');
+        const text = card.querySelector('p');
+        const btn = card.querySelector('.btn');
+        if (title && t.sideCardTitles[index] !== undefined) title.textContent = t.sideCardTitles[index];
+        if (text && t.sideCardTexts[index] !== undefined) text.textContent = t.sideCardTexts[index];
+        if (btn && t.sideCardButtons[index] !== undefined) btn.textContent = t.sideCardButtons[index];
+      });
+
+      setAllText('.section-title', t.sectionTitles);
+
+      document.querySelectorAll('.promo-card').forEach((card, index) => {
+        const title = card.querySelector('h3');
+        const link = card.querySelector('a');
+        if (title && t.promoTitles[index] !== undefined) title.textContent = t.promoTitles[index];
+        if (link && t.promoLinks[index] !== undefined) link.textContent = t.promoLinks[index];
+      });
+
+      document.querySelectorAll('.category-card').forEach((card, index) => {
+        const title = card.querySelector('h3');
+        const text = card.querySelector('p');
+        if (title && t.categoryTitles[index] !== undefined) title.textContent = t.categoryTitles[index];
+        if (text && t.categoryTexts[index] !== undefined) text.textContent = t.categoryTexts[index];
+      });
+
+      document.querySelectorAll('.product-card').forEach((card, index) => {
+        const badge = card.querySelector('.badge');
+        const title = card.querySelector('.product-title');
+        const text = card.querySelector('.product-desc');
+        const btn = card.querySelector('.btn');
+        if (badge && t.productBadges[index] !== undefined) badge.textContent = t.productBadges[index];
+        if (title && t.productTitles[index] !== undefined) title.textContent = t.productTitles[index];
+        if (text && t.productDescriptions[index] !== undefined) text.textContent = t.productDescriptions[index];
+        if (btn && t.productButtons[index] !== undefined) btn.textContent = t.productButtons[index];
+      });
+
+      document.querySelectorAll('.benefit-card').forEach((card, index) => {
+        const title = card.querySelector('h3');
+        const text = card.querySelector('p');
+        if (title && t.benefitTitles[index] !== undefined) title.textContent = t.benefitTitles[index];
+        if (text && t.benefitTexts[index] !== undefined) text.textContent = t.benefitTexts[index];
+      });
+
+      const footerBoxes = document.querySelectorAll('.footer-box');
+      if (footerBoxes[0]) {
+        const text = footerBoxes[0].querySelector('p');
+        if (text) text.textContent = t.footerBrandText;
+      }
+
+      [1, 2, 3, 4].forEach((boxIndex, localIndex) => {
+        const box = footerBoxes[boxIndex];
+        if (!box) return;
+        const heading = box.querySelector('h4');
+        const items = box.querySelectorAll('li a');
+        if (heading && t.footerHeadings[localIndex] !== undefined) heading.textContent = t.footerHeadings[localIndex];
+        items.forEach((item, itemIndex) => {
+          const value = t.footerLists[localIndex] && t.footerLists[localIndex][itemIndex];
+          if (value !== undefined) item.textContent = value;
+        });
+      });
+
+      setText('.legal-copy', t.legal);
+
+      const switcher = document.getElementById('languageSwitcher');
+      if (switcher) switcher.value = lang;
+      localStorage.setItem('selectedLanguage', lang);
+    };
+
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    const savedLanguage = localStorage.getItem('selectedLanguage') || 'es';
+    applyLanguage(savedLanguage);
+
+    const languageSwitcher = document.getElementById('languageSwitcher');
+    if (languageSwitcher) {
+      languageSwitcher.addEventListener('change', (event) => {
+        applyLanguage(event.target.value);
+      });
+    }
+  </script>
+</body>
+</html>
