@@ -350,6 +350,124 @@
       gap:10px;
     }
 
+    .mobile-header-toggle{
+      display:none;
+      min-height:54px;
+      width:54px;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:5px;
+      border:none;
+      border-radius:16px;
+      background:rgba(255,255,255,.08);
+      box-shadow:0 12px 26px rgba(0,0,0,.16);
+      cursor:pointer;
+      transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
+    }
+
+    .mobile-header-toggle:hover{
+      background:rgba(255,255,255,.14);
+      transform:translateY(-1px);
+    }
+
+    .mobile-header-toggle span{
+      width:20px;
+      height:2px;
+      border-radius:999px;
+      background:#fff;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+
+    .mobile-header-toggle.active span:nth-child(1){
+      transform:translateY(7px) rotate(45deg);
+    }
+
+    .mobile-header-toggle.active span:nth-child(2){
+      opacity:0;
+    }
+
+    .mobile-header-toggle.active span:nth-child(3){
+      transform:translateY(-7px) rotate(-45deg);
+    }
+
+    .mobile-utility-panel{
+      display:none;
+      padding:0 0 16px;
+    }
+
+    .mobile-utility-panel.open{
+      display:block;
+      animation: mobilePanelIn .22s ease;
+    }
+
+    .mobile-utility-card{
+      background:linear-gradient(180deg, rgba(24,33,47,.98), rgba(15,23,32,.98));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px;
+      box-shadow:0 18px 38px rgba(0,0,0,.22);
+      overflow:hidden;
+    }
+
+    .mobile-utility-section{
+      padding:16px 18px;
+    }
+
+    .mobile-utility-section + .mobile-utility-section{
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .mobile-location-item small{
+      display:block;
+      color:#94a3b8;
+      font-size:.76rem;
+      margin-bottom:4px;
+    }
+
+    .mobile-location-item strong{
+      display:block;
+      color:#fff;
+      font-size:.98rem;
+      line-height:1.2;
+    }
+
+    .mobile-utility-list{
+      display:grid;
+      gap:10px;
+    }
+
+    .mobile-utility-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      transition: background .25s ease, border-color .25s ease, transform .25s ease;
+    }
+
+    .mobile-utility-link:hover{
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.14);
+      transform:translateY(-1px);
+    }
+
+    .mobile-utility-link span{
+      display:block;
+      color:#94a3b8;
+      font-size:.78rem;
+      margin-bottom:3px;
+    }
+
+    .mobile-utility-link strong{
+      display:block;
+      color:#fff;
+      font-size:.96rem;
+      line-height:1.2;
+    }
+
     .action-link{
       min-height:50px;
       display:flex;
@@ -1037,9 +1155,37 @@
       100%{ transform: translateY(-12px) rotate(2deg); }
     }
 
+    @keyframes mobilePanelIn{
+      from{ opacity:0; transform:translateY(-8px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+
     @media (max-width: 1250px){
       .header-main{
-        grid-template-columns:1fr;
+        grid-template-columns: minmax(170px, auto) minmax(0, 1fr) 56px;
+      }
+
+      .location-box,
+      .header-actions{
+        display:none;
+      }
+
+      .mobile-header-toggle{
+        display:inline-flex;
+      }
+
+      .brand-box,
+      .search-box{
+        min-height:56px;
+        padding:8px 10px;
+      }
+
+      .search-form{
+        grid-template-columns:minmax(0, 1fr) 54px;
+      }
+
+      .search-form select{
+        display:none;
       }
 
       .hero-grid,
@@ -1080,19 +1226,52 @@
         grid-template-columns:1fr;
       }
 
+      .header-main{
+        grid-template-columns:minmax(132px, auto) minmax(0, 1fr) 50px;
+        gap:8px;
+        padding:12px 0;
+      }
+
+      .brand-box,
+      .search-box{
+        padding:6px 8px;
+      }
+
+      .logo-mark{
+        width:44px;
+        height:44px;
+        font-size:1rem;
+      }
+
+      .brand{
+        gap:10px;
+      }
+
+      .brand strong{
+        font-size:.88rem;
+      }
+
+      .brand small{
+        font-size:.72rem;
+      }
+
       .search-form{
-        grid-template-columns:1fr;
         border-radius:18px;
       }
 
-      .search-form select,
       .search-form input,
       .search-form button{
         min-height:48px;
       }
 
-      .header-actions{
-        grid-template-columns:1fr;
+      .mobile-header-toggle{
+        min-height:48px;
+        width:50px;
+        border-radius:14px;
+      }
+
+      .mobile-utility-section{
+        padding:14px 16px;
       }
 
       .hero-copy{
@@ -1170,6 +1349,12 @@
       </div>
       <!-- FIN ZONA EDITABLE: BUSCADOR -->
 
+      <button class="mobile-header-toggle" id="mobileHeaderToggle" type="button" aria-expanded="false" aria-controls="mobileUtilityPanel" aria-label="Abrir menú de ubicación y cuenta">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <!-- INICIO ZONA EDITABLE: ACCIONES HEADER -->
       <div class="header-actions editable-zone">
         <span class="editable-label">CUENTA / PEDIDOS / CARRITO</span>
@@ -1197,6 +1382,35 @@
       </div>
       <!-- FIN ZONA EDITABLE: ACCIONES HEADER -->
 
+    </div>
+
+    <div class="container mobile-utility-panel" id="mobileUtilityPanel">
+      <div class="mobile-utility-card">
+        <div class="mobile-utility-section mobile-location-item">
+          <small>Enviar a</small>
+          <strong>Tu ciudad o tu zona principal</strong>
+        </div>
+        <div class="mobile-utility-section mobile-utility-list">
+          <a href="#" class="mobile-utility-link">
+            <div>
+              <span>Hola, accede</span>
+              <strong>Cuenta y listas</strong>
+            </div>
+          </a>
+          <a href="#" class="mobile-utility-link">
+            <div>
+              <span>Gestión rápida</span>
+              <strong>Pedidos</strong>
+            </div>
+          </a>
+          <a href="#" class="mobile-utility-link">
+            <div>
+              <span>Compra actual</span>
+              <strong>Carrito</strong>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -1871,6 +2085,8 @@
       setText('.brand small', t.brandSmall);
       setText('.location-box small', t.locationSmall);
       setText('.location-box strong', t.locationStrong);
+      setText('.mobile-location-item small', t.locationSmall);
+      setText('.mobile-location-item strong', t.locationStrong);
 
       const searchInput = document.querySelector('.search-form input');
       if (searchInput) searchInput.placeholder = t.searchPlaceholder;
@@ -1882,8 +2098,8 @@
         });
       }
 
-      setAllText('.header-actions .action-link span', t.accountSpans);
-      setAllText('.header-actions .action-link strong', t.accountStrongs);
+      setAllText('.header-actions .action-link span, .mobile-utility-link span', t.accountSpans);
+      setAllText('.header-actions .action-link strong, .mobile-utility-link strong', t.accountStrongs);
       setAllText('.nav-link', t.nav);
 
       setText('.hero-copy .eyebrow', t.heroEyebrow);
@@ -1981,6 +2197,37 @@
     if (languageSwitcher) {
       languageSwitcher.addEventListener('change', (event) => {
         applyLanguage(event.target.value);
+      });
+    }
+
+    const mobileHeaderToggle = document.getElementById('mobileHeaderToggle');
+    const mobileUtilityPanel = document.getElementById('mobileUtilityPanel');
+
+    const closeMobileUtilityPanel = () => {
+      if (!mobileHeaderToggle || !mobileUtilityPanel) return;
+      mobileUtilityPanel.classList.remove('open');
+      mobileHeaderToggle.classList.remove('active');
+      mobileHeaderToggle.setAttribute('aria-expanded', 'false');
+    };
+
+    if (mobileHeaderToggle && mobileUtilityPanel) {
+      mobileHeaderToggle.addEventListener('click', () => {
+        const isOpen = mobileUtilityPanel.classList.toggle('open');
+        mobileHeaderToggle.classList.toggle('active', isOpen);
+        mobileHeaderToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      document.addEventListener('click', (event) => {
+        if (window.innerWidth > 1250) return;
+        if (!mobileUtilityPanel.classList.contains('open')) return;
+        if (mobileUtilityPanel.contains(event.target) || mobileHeaderToggle.contains(event.target)) return;
+        closeMobileUtilityPanel();
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 1250) {
+          closeMobileUtilityPanel();
+        }
       });
     }
   </script>
